@@ -1,146 +1,192 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Rocket Animation + Form</title>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2282487628451754"
+   crossorigin="anonymous"></script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Vagas Abertas</title>
 
-    <style>
-        body {
-            margin: 0;
-            overflow: hidden;
-            background-color: black;
-            font-family: Arial, sans-serif;
-        }
+<style>
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Arial;
+}
 
-        /* estrelas */
-        .star {
-            position: absolute;
-            background-color: white;
-            border-radius: 50%;
-            animation: twinkle 1.5s infinite ease-in-out;
-        }
+body {
+  background: #050505;
+  color: white;
+  overflow-x: hidden;
+}
 
-        @keyframes twinkle {
-            0% { opacity: 0.5; }
-            50% { opacity: 1; }
-            100% { opacity: 0.5; }
-        }
+/* Canvas ocupa tudo */
+canvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: -1;
+}
 
-        /* foguete */
-        @keyframes rocket-animation {
-            0% { transform: translateY(100vh); }
-            100% { transform: translateY(-100vh); }
-        }
+/* Conteúdo */
+header {
+  text-align: center;
+  padding: 80px 20px;
+}
 
-        #rocket {
-            position: absolute;
-            left: 50%;
-            bottom: -100px;
-            width: 50px;
-            height: 120px;
-            background: radial-gradient(circle, red, orange);
-            animation: rocket-animation 5s infinite;
-            z-index: 1;
-        }
+header h1 {
+  font-size: 3rem;
+  background: linear-gradient(90deg, #00f2ff, #ff00c8);
+  -webkit-background-clip: text;
+  color: transparent;
+}
 
-        #exhaust {
-            position: absolute;
-            bottom: 0;
-            left: 50%;
-            width: 10px;
-            height: 20px;
-            background: linear-gradient(to bottom, rgba(255,255,255,0.5), transparent);
-            animation: exhaust-animation 5s infinite;
-        }
+header p {
+  color: #aaa;
+}
 
-        @keyframes exhaust-animation {
-            0% { opacity: 1; transform: translateX(-50%); }
-            100% { opacity: 0; transform: translateX(-50%) translateY(20px); }
-        }
+/* Card glass */
+.container {
+  max-width: 500px;
+  margin: auto;
+  background: rgba(255,255,255,0.05);
+  backdrop-filter: blur(20px);
+  padding: 30px;
+  border-radius: 15px;
+  box-shadow: 0 0 40px rgba(0,255,255,0.1);
+}
 
-        /* FORMULÁRIO */
-        .form-container {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            z-index: 2;
+/* Inputs */
+input, select, textarea {
+  width: 100%;
+  padding: 12px;
+  margin-top: 12px;
+  border: none;
+  border-radius: 8px;
+  background: rgba(255,255,255,0.08);
+  color: white;
+}
 
-            background: rgba(0,0,0,0.7);
-            padding: 30px;
-            border-radius: 15px;
-            backdrop-filter: blur(10px);
-            box-shadow: 0 0 20px rgba(255,255,255,0.2);
-            color: white;
-            width: 300px;
-        }
+/* Botão futurista */
+button {
+  width: 100%;
+  padding: 14px;
+  margin-top: 20px;
+  border: none;
+  border-radius: 8px;
+  background: linear-gradient(90deg, #00f2ff, #ff00c8);
+  color: white;
+  font-size: 16px;
+  cursor: pointer;
+  transition: 0.3s;
+}
 
-        .form-container h2 {
-            text-align: center;
-        }
+button:hover {
+  transform: scale(1.08);
+  box-shadow: 0 0 20px #00f2ff;
+}
 
-        .form-container input {
-            width: 100%;
-            padding: 10px;
-            margin-top: 10px;
-            border-radius: 8px;
-            border: none;
-        }
+.ads {
+  margin: 25px 0;
+  text-align: center;
+  color: #888;
+}
 
-        .form-container button {
-            width: 100%;
-            padding: 10px;
-            margin-top: 15px;
-            border: none;
-            border-radius: 8px;
-            background: orange;
-            color: black;
-            font-weight: bold;
-            cursor: pointer;
-        }
-
-        .form-container button:hover {
-            background: red;
-            color: white;
-        }
-    </style>
+footer {
+  text-align: center;
+  margin-top: 40px;
+  padding: 20px;
+  color: #666;
+}
+</style>
 </head>
 
 <body>
 
-    <!-- FORMULÁRIO -->
-    <div class="form-container">
-        <h2>🚀 Cadastro</h2>
-        <input type="text" placeholder="Nome">
-        <input type="email" placeholder="Email">
-        <button onclick="acao()">Continuar</button>
-    </div>
+<canvas id="space"></canvas>
 
-    <!-- FOGUETE -->
-    <div id="rocket">
-        <div id="exhaust"></div>
-    </div>
+<header>
+  <h1>🚀 Busque emprego com IA envie seu curriculum</h1>
+  <p>Envie seu currículo e entre para o futuro</p>
+</header>
 
-    <script>
-        // estrelas
-        for (let i = 0; i < 100; i++) {
-            const star = document.createElement('div');
-            star.classList.add('star');
+<div class="container">
 
-            const size = Math.random() * 3 + 2;
-            star.style.width = `${size}px`;
-            star.style.height = `${size}px`;
-            star.style.left = `${Math.random() * 100}vw`;
-            star.style.top = `${Math.random() * 100}vh`;
+  <div class="ads">✨ Espaço AdSense</div>
 
-            document.body.appendChild(star);
-        }
+  <form>
+    <input type="text" placeholder="Nome completo" required>
+    <input type="email" placeholder="Email" required>
+    <input type="tel" placeholder="Telefone">
+    <select>
+      <option>Escolha a vaga</option>
+      <option>TI</option>
+      <option>Admin</option>
+    </select>
+    <textarea placeholder="Fale sobre você"></textarea>
+    <input type="file">
+    <button>Enviar Currículo</button>
+  </form>
 
-        function acao() {
-            alert("Aqui você pode chamar anúncio ou próxima etapa");
-        }
-    </script>
+  <div class="ads">✨ Espaço AdSense</div>
+
+</div>
+
+<footer>© 2026</footer>
+
+<script>
+const canvas = document.getElementById("space");
+const ctx = canvas.getContext("2d");
+
+canvas.width = window.innerWidth;
+canvas.height = window.innerHeight;
+
+let stars = [];
+
+for (let i = 0; i < 150; i++) {
+  stars.push({
+    x: Math.random() * canvas.width,
+    y: Math.random() * canvas.height,
+    size: Math.random() * 2,
+    speed: Math.random() * 0.5
+  });
+}
+
+let mouseX = 0;
+let mouseY = 0;
+
+document.addEventListener("mousemove", e => {
+  mouseX = e.clientX;
+  mouseY = e.clientY;
+});
+
+function animate() {
+  ctx.fillStyle = "#050505";
+  ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+  stars.forEach(star => {
+    star.y += star.speed;
+
+    if (star.y > canvas.height) {
+      star.y = 0;
+      star.x = Math.random() * canvas.width;
+    }
+
+    let dx = (mouseX - canvas.width / 2) * 0.0005;
+    let dy = (mouseY - canvas.height / 2) * 0.0005;
+
+    ctx.beginPath();
+    ctx.arc(star.x + dx * 50, star.y + dy * 50, star.size, 0, Math.PI * 2);
+    ctx.fillStyle = "white";
+    ctx.fill();
+  });
+
+  requestAnimationFrame(animate);
+}
+
+animate();
+</script>
 
 </body>
 </html>
