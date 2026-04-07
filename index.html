@@ -3,6 +3,7 @@
 <head>
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2282487628451754"
    crossorigin="anonymous"></script>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Vagas Abertas</title>
@@ -21,7 +22,7 @@ body {
   overflow-x: hidden;
 }
 
-/* Canvas ocupa tudo */
+/* Canvas fundo */
 canvas {
   position: fixed;
   top: 0;
@@ -29,7 +30,7 @@ canvas {
   z-index: -1;
 }
 
-/* Conteúdo */
+/* Header */
 header {
   text-align: center;
   padding: 80px 20px;
@@ -46,7 +47,7 @@ header p {
   color: #aaa;
 }
 
-/* Card glass */
+/* Container */
 .container {
   max-width: 500px;
   margin: auto;
@@ -55,6 +56,8 @@ header p {
   padding: 30px;
   border-radius: 15px;
   box-shadow: 0 0 40px rgba(0,255,255,0.1);
+  position: relative;
+  z-index: 2;
 }
 
 /* Inputs */
@@ -68,7 +71,7 @@ input, select, textarea {
   color: white;
 }
 
-/* Botão futurista */
+/* Botão */
 button {
   width: 100%;
   padding: 14px;
@@ -98,6 +101,49 @@ footer {
   margin-top: 40px;
   padding: 20px;
   color: #666;
+}
+
+/* 🚀 FOGUETE */
+#rocket {
+  position: fixed;
+  right: 40px;
+  bottom: -150px;
+  width: 60px;
+  height: 140px;
+  z-index: 1;
+  animation: subir 6s linear infinite;
+}
+
+@keyframes subir {
+  0% { transform: translateY(0); }
+  100% { transform: translateY(-120vh); }
+}
+
+/* Corpo do foguete */
+.rocket-body {
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(180deg, #ff3c3c, #ff9900);
+  border-radius: 30px;
+  position: relative;
+}
+
+/* Chama */
+.fire {
+  position: absolute;
+  bottom: -25px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 15px;
+  height: 30px;
+  background: linear-gradient(to bottom, yellow, orange, transparent);
+  border-radius: 50%;
+  animation: fogo 0.2s infinite;
+}
+
+@keyframes fogo {
+  0% { height: 25px; opacity: 1; }
+  100% { height: 35px; opacity: 0.6; }
 }
 </style>
 </head>
@@ -134,6 +180,13 @@ footer {
 </div>
 
 <footer>© 2026</footer>
+
+<!-- 🚀 FOGUETE -->
+<div id="rocket">
+  <div class="rocket-body">
+    <div class="fire"></div>
+  </div>
+</div>
 
 <script>
 const canvas = document.getElementById("space");
