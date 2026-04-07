@@ -1,1 +1,300 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2282487628451754"
+   crossorigin="anonymous"></script>
 
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Vagas Abertas</title>
+
+<style>
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Arial;
+}
+
+body {
+  background: #050505;
+  color: white;
+  overflow-x: hidden;
+}
+
+/* Canvas fundo */
+canvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: -1;
+}
+
+/* Header */
+header {
+  text-align: center;
+  padding: 80px 20px;
+}
+
+header h1 {
+  font-size: 3rem;
+  background: linear-gradient(90deg, #00f2ff, #ff00c8);
+  -webkit-background-clip: text;
+  color: transparent;
+}
+
+header p {
+  color: #aaa;
+}
+
+/* Container */
+.container {
+  max-width: 500px;
+  margin: auto;
+  background: rgba(255,255,255,0.05);
+  backdrop-filter: blur(20px);
+  padding: 30px;
+  border-radius: 15px;
+  box-shadow: 0 0 40px rgba(0,255,255,0.1);
+  position: relative;
+  z-index: 2;
+}
+
+/* Inputs */
+input, select, textarea {
+  width: 100%;
+  padding: 12px;
+  margin-top: 12px;
+  border: none;
+  border-radius: 8px;
+  background: rgba(255,255,255,0.08);
+  color: white;
+}
+
+/* Botão */
+button {
+  width: 100%;
+  padding: 14px;
+  margin-top: 20px;
+  border: none;
+  border-radius: 8px;
+  background: linear-gradient(90deg, #00f2ff, #ff00c8);
+  color: white;
+  font-size: 16px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+button:hover {
+  transform: scale(1.08);
+  box-shadow: 0 0 20px #00f2ff;
+}
+
+.ads {
+  margin: 25px 0;
+  text-align: center;
+  color: #888;
+}
+
+footer {
+  text-align: center;
+  margin-top: 40px;
+  padding: 20px;
+  color: #666;
+}
+
+/* 🚀 FOGUETE */
+#rocket {
+  position: fixed;
+  right: 40px;
+  bottom: -150px;
+  width: 60px;
+  height: 140px;
+  z-index: 1;
+  animation: subir 6s linear infinite;
+}
+
+/* subida */
+@keyframes subir {
+  0% { transform: translateY(0); }
+  100% { transform: translateY(-120vh); }
+}
+
+/* corpo principal */
+#rocket {
+  background: linear-gradient(180deg, #ffffff, #dcdcdc);
+  border-radius: 30px;
+  box-shadow: 0 0 20px rgba(255,255,255,0.3);
+  position: fixed;
+}
+
+/* ponta */
+#rocket::before {
+  content: "";
+  position: absolute;
+  top: -30px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 0;
+  height: 0;
+  border-left: 30px solid transparent;
+  border-right: 30px solid transparent;
+  border-bottom: 30px solid red;
+}
+
+/* janela */
+.rocket-window {
+  position: absolute;
+  top: 30px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 20px;
+  height: 20px;
+  background: #00f2ff;
+  border-radius: 50%;
+  box-shadow: 0 0 10px #00f2ff;
+}
+
+/* asas */
+.fin {
+  position: absolute;
+  bottom: 20px;
+  width: 20px;
+  height: 30px;
+  background: red;
+}
+
+.fin.left {
+  left: -18px;
+  border-radius: 10px 0 0 10px;
+}
+
+.fin.right {
+  right: -18px;
+  border-radius: 0 10px 10px 0;
+}
+
+/* fogo principal */
+.fire {
+  position: absolute;
+  bottom: -35px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 18px;
+  height: 40px;
+  background: linear-gradient(to bottom, yellow, orange, red, transparent);
+  border-radius: 50%;
+  filter: blur(1px);
+  animation: fogo 0.15s infinite;
+}
+
+/* fogo secundário */
+.fire2 {
+  width: 10px;
+  height: 30px;
+  opacity: 0.7;
+  animation: fogo 0.1s infinite;
+}
+
+@keyframes fogo {
+  0% { height: 35px; opacity: 1; }
+  100% { height: 50px; opacity: 0.5; }
+}
+</style>
+</head>
+
+<body>
+
+<canvas id="space"></canvas>
+
+<header>
+  <h1>🚀 Busque emprego com IA envie seu curriculum</h1>
+  <p>Envie seu currículo e entre para o futuro</p>
+</header>
+
+<div class="container">
+
+  <div class="ads">✨ Espaço AdSense</div>
+
+  <form>
+    <input type="text" placeholder="Nome completo" required>
+    <input type="email" placeholder="Email" required>
+    <input type="tel" placeholder="Telefone">
+    <select>
+      <option>Escolha a vaga</option>
+      <option>TI</option>
+      <option>Admin</option>
+    </select>
+    <textarea placeholder="Fale sobre você"></textarea>
+    <input type="file">
+    <button>Continuar</button>
+  </form>
+
+  <div class="ads">✨ Espaço AdSense</div>
+
+</div>
+
+<footer>© 2026</footer>
+
+<!-- 🚀 FOGUETE -->
+<div id="rocket">
+  <div class="rocket-body">
+    <div class="fire"></div>
+  </div>
+</div>
+
+<script>
+const canvas = document.getElementById("space");
+const ctx = canvas.getContext("2d");
+
+canvas.width = window.innerWidth;
+canvas.height = window.innerHeight;
+
+let stars = [];
+
+for (let i = 0; i < 150; i++) {
+  stars.push({
+    x: Math.random() * canvas.width,
+    y: Math.random() * canvas.height,
+    size: Math.random() * 2,
+    speed: Math.random() * 0.5
+  });
+}
+
+let mouseX = 0;
+let mouseY = 0;
+
+document.addEventListener("mousemove", e => {
+  mouseX = e.clientX;
+  mouseY = e.clientY;
+});
+
+function animate() {
+  ctx.fillStyle = "#050505";
+  ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+  stars.forEach(star => {
+    star.y += star.speed;
+
+    if (star.y > canvas.height) {
+      star.y = 0;
+      star.x = Math.random() * canvas.width;
+    }
+
+    let dx = (mouseX - canvas.width / 2) * 0.0005;
+    let dy = (mouseY - canvas.height / 2) * 0.0005;
+
+    ctx.beginPath();
+    ctx.arc(star.x + dx * 50, star.y + dy * 50, star.size, 0, Math.PI * 2);
+    ctx.fillStyle = "white";
+    ctx.fill();
+  });
+
+  requestAnimationFrame(animate);
+}
+
+animate();
+</script>
+
+</body>
+</html>
