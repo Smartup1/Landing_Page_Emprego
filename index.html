@@ -114,36 +114,91 @@ footer {
   animation: subir 6s linear infinite;
 }
 
+/* subida */
 @keyframes subir {
   0% { transform: translateY(0); }
   100% { transform: translateY(-120vh); }
 }
 
-/* Corpo do foguete */
-.rocket-body {
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(180deg, #ff3c3c, #ff9900);
+/* corpo principal */
+#rocket {
+  background: linear-gradient(180deg, #ffffff, #dcdcdc);
   border-radius: 30px;
-  position: relative;
+  box-shadow: 0 0 20px rgba(255,255,255,0.3);
+  position: fixed;
 }
 
-/* Chama */
-.fire {
+/* ponta */
+#rocket::before {
+  content: "";
   position: absolute;
-  bottom: -25px;
+  top: -30px;
   left: 50%;
   transform: translateX(-50%);
-  width: 15px;
-  height: 30px;
-  background: linear-gradient(to bottom, yellow, orange, transparent);
+  width: 0;
+  height: 0;
+  border-left: 30px solid transparent;
+  border-right: 30px solid transparent;
+  border-bottom: 30px solid red;
+}
+
+/* janela */
+.rocket-window {
+  position: absolute;
+  top: 30px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 20px;
+  height: 20px;
+  background: #00f2ff;
   border-radius: 50%;
-  animation: fogo 0.2s infinite;
+  box-shadow: 0 0 10px #00f2ff;
+}
+
+/* asas */
+.fin {
+  position: absolute;
+  bottom: 20px;
+  width: 20px;
+  height: 30px;
+  background: red;
+}
+
+.fin.left {
+  left: -18px;
+  border-radius: 10px 0 0 10px;
+}
+
+.fin.right {
+  right: -18px;
+  border-radius: 0 10px 10px 0;
+}
+
+/* fogo principal */
+.fire {
+  position: absolute;
+  bottom: -35px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 18px;
+  height: 40px;
+  background: linear-gradient(to bottom, yellow, orange, red, transparent);
+  border-radius: 50%;
+  filter: blur(1px);
+  animation: fogo 0.15s infinite;
+}
+
+/* fogo secundário */
+.fire2 {
+  width: 10px;
+  height: 30px;
+  opacity: 0.7;
+  animation: fogo 0.1s infinite;
 }
 
 @keyframes fogo {
-  0% { height: 25px; opacity: 1; }
-  100% { height: 35px; opacity: 0.6; }
+  0% { height: 35px; opacity: 1; }
+  100% { height: 50px; opacity: 0.5; }
 }
 </style>
 </head>
