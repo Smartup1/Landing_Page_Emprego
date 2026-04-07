@@ -3,28 +3,36 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Rocket Animation</title>
+    <title>Rocket Animation + Form</title>
+
     <style>
         body {
             margin: 0;
             overflow: hidden;
             background-color: black;
+            font-family: Arial, sans-serif;
         }
+
+        /* estrelas */
         .star {
             position: absolute;
             background-color: white;
             border-radius: 50%;
             animation: twinkle 1.5s infinite ease-in-out;
         }
+
         @keyframes twinkle {
             0% { opacity: 0.5; }
             50% { opacity: 1; }
             100% { opacity: 0.5; }
         }
+
+        /* foguete */
         @keyframes rocket-animation {
             0% { transform: translateY(100vh); }
             100% { transform: translateY(-100vh); }
         }
+
         #rocket {
             position: absolute;
             left: 50%;
@@ -33,38 +41,106 @@
             height: 120px;
             background: radial-gradient(circle, red, orange);
             animation: rocket-animation 5s infinite;
+            z-index: 1;
         }
+
         #exhaust {
             position: absolute;
             bottom: 0;
             left: 50%;
             width: 10px;
             height: 20px;
-            background: linear-gradient(to bottom, rgba(255, 255, 255, 0.5), transparent);
+            background: linear-gradient(to bottom, rgba(255,255,255,0.5), transparent);
             animation: exhaust-animation 5s infinite;
         }
+
         @keyframes exhaust-animation {
             0% { opacity: 1; transform: translateX(-50%); }
             100% { opacity: 0; transform: translateX(-50%) translateY(20px); }
         }
+
+        /* FORMULÁRIO */
+        .form-container {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 2;
+
+            background: rgba(0,0,0,0.7);
+            padding: 30px;
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 0 20px rgba(255,255,255,0.2);
+            color: white;
+            width: 300px;
+        }
+
+        .form-container h2 {
+            text-align: center;
+        }
+
+        .form-container input {
+            width: 100%;
+            padding: 10px;
+            margin-top: 10px;
+            border-radius: 8px;
+            border: none;
+        }
+
+        .form-container button {
+            width: 100%;
+            padding: 10px;
+            margin-top: 15px;
+            border: none;
+            border-radius: 8px;
+            background: orange;
+            color: black;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .form-container button:hover {
+            background: red;
+            color: white;
+        }
     </style>
 </head>
+
 <body>
+
+    <!-- FORMULÁRIO -->
+    <div class="form-container">
+        <h2>🚀 Cadastro</h2>
+        <input type="text" placeholder="Nome">
+        <input type="email" placeholder="Email">
+        <button onclick="acao()">Continuar</button>
+    </div>
+
+    <!-- FOGUETE -->
     <div id="rocket">
         <div id="exhaust"></div>
     </div>
+
     <script>
-        // Create stars in the sky
+        // estrelas
         for (let i = 0; i < 100; i++) {
             const star = document.createElement('div');
             star.classList.add('star');
-            const size = Math.random() * 5 + 5;
+
+            const size = Math.random() * 3 + 2;
             star.style.width = `${size}px`;
             star.style.height = `${size}px`;
             star.style.left = `${Math.random() * 100}vw`;
             star.style.top = `${Math.random() * 100}vh`;
+
             document.body.appendChild(star);
         }
+
+        function acao() {
+            alert("Aqui você pode chamar anúncio ou próxima etapa");
+        }
     </script>
+
 </body>
 </html>
