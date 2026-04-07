@@ -10,58 +10,49 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: 'Arial', sans-serif;
+  font-family: Arial;
 }
 
 body {
-  background: #0a0a0a;
+  background: #050505;
   color: white;
   overflow-x: hidden;
 }
 
-/* Background animado */
-body::before {
-  content: "";
+/* Canvas ocupa tudo */
+canvas {
   position: fixed;
-  width: 200%;
-  height: 200%;
-  background: radial-gradient(circle at 20% 20%, #0d6efd33, transparent),
-              radial-gradient(circle at 80% 80%, #ff00cc33, transparent);
-  animation: moveBg 10s infinite alternate;
+  top: 0;
+  left: 0;
   z-index: -1;
 }
 
-@keyframes moveBg {
-  0% { transform: translate(0,0); }
-  100% { transform: translate(-50px,-50px); }
-}
-
+/* Conteúdo */
 header {
   text-align: center;
-  padding: 60px 20px;
+  padding: 80px 20px;
 }
 
 header h1 {
   font-size: 3rem;
-  background: linear-gradient(90deg, #0d6efd, #ff00cc);
+  background: linear-gradient(90deg, #00f2ff, #ff00c8);
   -webkit-background-clip: text;
   color: transparent;
 }
 
 header p {
-  margin-top: 10px;
-  color: #ccc;
+  color: #aaa;
 }
 
-/* Container */
+/* Card glass */
 .container {
   max-width: 500px;
   margin: auto;
   background: rgba(255,255,255,0.05);
+  backdrop-filter: blur(20px);
   padding: 30px;
   border-radius: 15px;
-  backdrop-filter: blur(10px);
-  box-shadow: 0 0 40px rgba(0,0,0,0.5);
+  box-shadow: 0 0 40px rgba(0,255,255,0.1);
 }
 
 /* Inputs */
@@ -69,20 +60,20 @@ input, select, textarea {
   width: 100%;
   padding: 12px;
   margin-top: 12px;
-  border-radius: 8px;
   border: none;
+  border-radius: 8px;
   background: rgba(255,255,255,0.08);
   color: white;
 }
 
-/* Botão */
+/* Botão futurista */
 button {
   width: 100%;
   padding: 14px;
   margin-top: 20px;
   border: none;
   border-radius: 8px;
-  background: linear-gradient(90deg, #0d6efd, #ff00cc);
+  background: linear-gradient(90deg, #00f2ff, #ff00c8);
   color: white;
   font-size: 16px;
   cursor: pointer;
@@ -90,72 +81,110 @@ button {
 }
 
 button:hover {
-  transform: scale(1.05);
+  transform: scale(1.08);
+  box-shadow: 0 0 20px #00f2ff;
 }
 
-/* Ads */
 .ads {
-  margin: 30px 0;
+  margin: 25px 0;
   text-align: center;
-  background: rgba(255,255,255,0.05);
-  padding: 20px;
-  border-radius: 10px;
+  color: #888;
 }
 
-/* Footer */
 footer {
   text-align: center;
   margin-top: 40px;
   padding: 20px;
-  color: #777;
+  color: #666;
 }
-
 </style>
 </head>
 
 <body>
 
+<canvas id="space"></canvas>
+
 <header>
-  <h1>Trabalhe Conosco</h1>
-  <p>Envie seu currículo e comece sua carreira</p>
+  <h1>🚀 Trabalhe Conosco</h1>
+  <p>Envie seu currículo e entre para o futuro</p>
 </header>
 
 <div class="container">
 
-  <div class="ads">
-    🔥 Espaço AdSense
-  </div>
+  <div class="ads">✨ Espaço AdSense</div>
 
   <form>
-
     <input type="text" placeholder="Nome completo" required>
     <input type="email" placeholder="Email" required>
     <input type="tel" placeholder="Telefone">
-
     <select>
       <option>Escolha a vaga</option>
-      <option>TI / Desenvolvedor</option>
-      <option>Administrativo</option>
-      <option>Atendimento</option>
+      <option>TI</option>
+      <option>Admin</option>
     </select>
-
     <textarea placeholder="Fale sobre você"></textarea>
-
     <input type="file">
-
-    <button type="submit">Enviar Currículo</button>
-
+    <button>Enviar Currículo</button>
   </form>
 
-  <div class="ads">
-    🔥 Espaço AdSense
-  </div>
+  <div class="ads">✨ Espaço AdSense</div>
 
 </div>
 
-<footer>
-  © 2026 - Sua Empresa
-</footer>
+<footer>© 2026</footer>
+
+<script>
+const canvas = document.getElementById("space");
+const ctx = canvas.getContext("2d");
+
+canvas.width = window.innerWidth;
+canvas.height = window.innerHeight;
+
+let stars = [];
+
+for (let i = 0; i < 150; i++) {
+  stars.push({
+    x: Math.random() * canvas.width,
+    y: Math.random() * canvas.height,
+    size: Math.random() * 2,
+    speed: Math.random() * 0.5
+  });
+}
+
+let mouseX = 0;
+let mouseY = 0;
+
+document.addEventListener("mousemove", e => {
+  mouseX = e.clientX;
+  mouseY = e.clientY;
+});
+
+function animate() {
+  ctx.fillStyle = "#050505";
+  ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+  stars.forEach(star => {
+    star.y += star.speed;
+
+    if (star.y > canvas.height) {
+      star.y = 0;
+      star.x = Math.random() * canvas.width;
+    }
+
+    let dx = (mouseX - canvas.width / 2) * 0.0005;
+    let dy = (mouseY - canvas.height / 2) * 0.0005;
+
+    ctx.beginPath();
+    ctx.arc(star.x + dx * 50, star.y + dy * 50, star.size, 0, Math.PI * 2);
+    ctx.fillStyle = "white";
+    ctx.fill();
+  });
+
+  requestAnimationFrame(animate);
+}
+
+animate();
+</script>
 
 </body>
 </html>
